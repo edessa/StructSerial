@@ -1,0 +1,41 @@
+import socket
+import serial
+import sys
+import struct
+
+class servoStruct; ##Example: Set (state) velocity (command) 3 (ID) 50 (amount)
+{
+_pack_ = 1
+int ID
+String command
+int amount
+String state 
+}
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_address = ('', 10000)
+sock.bind(server_address)
+
+sock.listen(1)
+
+connection, clientAddress = sock.accept() #Not sure if works
+ser = serial.Serial("/dev/ttyACM0", 9600)
+
+
+while True:
+
+	message = raw_input("Enter servo commands here: ")
+	command = "next String"
+	String[] set = str.split(command)
+	obj = servoStruct()
+	obj.state = set[0]
+	obj.command = set[1]
+	obj.ID = (int)set[2]
+	obj.amount = (int)set[3]
+	ser.write(obj);
+
+connection.close();
+	
+	
+	
