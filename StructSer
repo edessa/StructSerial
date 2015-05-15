@@ -19,14 +19,14 @@ sock.bind(server_address)
 
 sock.listen(1)
 
-connection, clientAddress = sock.accept() #Not sure if works
+connection, clientAddress = sock.accept()
 ser = serial.Serial("/dev/ttyACM0", 9600)
 
 
 while True:
 
 	message = raw_input("Enter servo commands here: ")
-	command = "next String"
+	command = connection.recv(5);
 	String[] set = str.split(command)
 	obj = servoStruct()
 	obj.state = set[0]
