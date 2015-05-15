@@ -33,7 +33,8 @@ while True:
 	obj.command = set[1]
 	obj.ID = (int)set[2]
 	obj.amount = (int)set[3]
-	ser.write(obj);
+	struct.pack(obj)
+	ser.write(obj)
 
 connection.close();
 	
