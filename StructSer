@@ -27,14 +27,9 @@ while True:
 
 	message = raw_input("Enter servo commands here: ")
 	command = connection.recv(5);
-	String[] set = str.split(command)
-	obj = servoStruct()
-	obj.state = set[0]
-	obj.command = set[1]
-	obj.ID = (int)set[2]
-	obj.amount = (int)set[3]
-	struct.pack(obj)
-	ser.write(obj)
+	command.replace(" ", "\x"); //Next two characters are interpreted as hex digits
+	
+	ser.write(command) //
 
 connection.close();
 	
