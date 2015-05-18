@@ -24,13 +24,24 @@ ser = serial.Serial("/dev/ttyACM0", 9600)
 
 
 while True:
-
+	print("1: Send information")
+	print("2: Receive information")
+	option = raw_input("Select Option: ")
+	
+	if option == '1':
 	message = raw_input("Enter servo commands here: ")
 	command = connection.recv(5);
-	command.replace(" ", "\x"); //Next two characters are interpreted as hex digits
+	comm = struct.pack('>B', command) //Send it as a binary value over serial
+	ser.write(comm)
 	
-	ser.write(command) //
-
+	if option == '2':
+	comm = ser.read()
+	command = struct.unpack('s', comm) //Converts it to String
+	print command[0].join() + " is " + command[1].join()
+	print command[2].join() + " is " + command[3].join()
+	print command[4].join() + " is " + command[5].join()
+	print command[6].join() + " is " + command[7].join()
+	print command[8].join() + " is " + command[9].join()
 connection.close();
 	
 	
